@@ -1,0 +1,38 @@
+{% set pageName="Home" %}
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% block pageTitle %}
+	{{serviceName}}
+{% endblock %}
+
+{% block header %}
+{{ govukHeader({
+	homepageUrl: "/",
+	productName: "DSIT"})
+}}
+
+{{ govukServiceNavigation({
+	navigation: [
+		{ href: "/", text: "About", active: true },
+		{ href: "/blog", text: "Blog" },
+		{ href: "/chat", text: "Chat" },
+		{ href: "/resources", text: "Resources" },
+		{ href: "/links", text: "Links" }
+	]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-width-container">
+	<main class="govuk-main-wrapper">
+		{% include "layouts/main.html" %}	
+	</main>
+</div>
+{% endblock %}
