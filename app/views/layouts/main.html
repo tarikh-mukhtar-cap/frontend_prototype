@@ -1,41 +1,39 @@
-{% block content %}
-    <div class="govuk-grid-row">
-        <h1 class="govuk-heading-xl">About</h1>
-        <div class="govuk-grid-column-one-third app-sticky-element">
-            <p class="govuk-body">Contents</p>
-            <p class="govuk-body">-- <a href="#overview" class="govuk-link">Overview</a></p>
-            <p class="govuk-body">-- <a href="#get-involved" class="govuk-link">Get Involved</a></p>
-        </div>
-        <div class="govuk-grid-column-two-thirds">
-            <!-- Overview -->
-            <span class="govuk-caption-l">What we do at {{serviceName}}</span>
-            <h2 class="govuk-heading-l" id="overview">Overview</h2>
-            <p class="govuk-body">The cross-government artificial intelligence (AI) community exists to:</p>
-            <ul class="govuk-list govuk-list--bullet">    
-                <li>share information about what other departments are doing in the field of AI</li>
-                <li>enable people using AI tools in the workplace to share their experiences and best practices</li>
-                <li>host talks on topics including AI ethics, security and emerging uses of AI technology, from speakers both inside and outside government</li>
-            </ul>
-            <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-            
-            <!-- Get Involved -->
-            <h2 class="govuk-heading-l" id="get-involved">Get Involved</h2>
-            <div class="govuk-form-group">
-                <p class="govuk-body">Enter your email address to:</p>
-                <ul class="govuk-list govuk-list--bullet">
-                    <li>subscribe for email and meeting updates.</li>
-                    <li>manage your existing subscrription.</li>
-                    <li>oranges</li>
-                </ul>
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
-                <input class="govuk-input govuk-input--width-20" id="email" name="email" type="text">
-                <button class="govuk-button" aria-placeholder="Enter your email address">Enter</button>
-                <!-- <div class="govuk-input__wrapper govuk-form-group--error">
-                    <p id="event-name-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> Enter a valid email address</p>
-                    <input class="govuk-input govuk-input--error" id="email" name="email" type="text">
-                    <button class="govuk-button" aria-placeholder="Enter your email address">Enter</button>
-                </div> -->
-            </div>
+<html lang="en" class="govuk-template">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block pageTitle %}{{serviceName}}{% endblock %} - GOV.UK</title>
+
+        <meta name="viewport" content="width=device-width, intial-scale=1">
+
+        {# {{ govukTemplate.head() }} #}
+    </head>
+
+    <body class="govuk-template_body">
+        {# {{ govukTemplate.skipLink() }} #}
+        
+        {% block header %}{% endblock %}
+
+        <div class="govuk-width-container">
+            {% block beforeContent %}{% endblock %}
+
+            <main class="govuk-main-wrapper" id="main-content" role="main">
+                {% block content %}{% endblock %}
+            </main>
         </div>
-	</div>
-{% endblock %}
+
+        {%block footer%}{{ govukFooter() }}{% endblock %}
+
+        {# {{ govukTemplate.bodyEnd() }} #}
+
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

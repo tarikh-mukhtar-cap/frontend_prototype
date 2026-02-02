@@ -1,38 +1,33 @@
-{% set pageName="Home" %}
-{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
-{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
-{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
-{% from "govuk/components/skip-link/macro.njk" import govukSkipLink %}
-{% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
-{% from "govuk/components/footer/macro.njk" import govukFooter %}
-{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
-
-{% block pageTitle %}
-	{{serviceName}}
-{% endblock %}
+{% extends "layouts/main.html" %}
 
 {% block header %}
 {{ govukHeader({
 	homepageUrl: "/",
-	productName: "DSIT"})
+	productName: serviceName })
 }}
-
 {{ govukServiceNavigation({
 	navigation: [
-		{ href: "/", text: "About", active: true },
-		{ href: "/blog", text: "Blog" },
-		{ href: "/chat", text: "Chat" },
-		{ href: "/resources", text: "Resources" },
-		{ href: "/links", text: "Links" }
+		{ href: "/", text: "About", active: page == "about" },
+		{ href: "/blog", text: "Blog", active: page == "blog" },
+		{ href: "/chat", text: "Chat", active: page == "chat" },
+		{ href: "/resources", text: "Resources", active: page == "resources" },
+		{ href: "/links", text: "Links", active: page == "links" }
 	]
 }) }}
 {% endblock %}
 
 {% block content %}
-<div class="govuk-width-container">
-	<main class="govuk-main-wrapper">
-		{% include "layouts/main.html" %}	
-	</main>
-</div>
+	{% if page == "about" %}
+		{% include "pages/about.html" %}
+	{% elseif page == "blog" %}
+		{% include "pages/blog.html" %}
+	{% elseif page == "chat" %}
+		{% include "pages/chat.html" %}
+	{% elseif page == "resources" %}
+		{% include "pages/resources.html" %}
+	{% elseif page == "links" %}
+		{% include "pages/links.html" %}
+	{% else %}
+		{% include "pages/about.html" %}
+	{% endif %}
 {% endblock %}
